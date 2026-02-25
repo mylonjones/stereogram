@@ -1,0 +1,27 @@
+newgraph 
+xaxis min 0 max 10 size 3 nodraw
+yaxis min 0 max 20 size 6 nodraw
+clip
+
+shell : awk '\
+    function printDot(x, y) {\
+        printf("newline poly linethickness 10 color %f %f %f\n   pts %f %f\n", r, g, b, x, y);\
+    }\
+    BEGIN {\
+    srand();\
+        for (i = 0; i < 2000; i += 1){\
+            x = rand() * 10;\
+            y = rand() * 10;\
+            r = rand();\
+            g = rand();\
+            b = rand();\
+            printDot(x, y);\
+            printDot(x + 10, y);\
+            printDot(x, y + 10);\
+            printDot(x - 10, y);\
+            printDot(x, y - 10);\
+            printDot(x + 10, y + 10);\
+            printDot(x - 10, y + 10);\
+            printDot(x, y + 20);\
+        }\
+    }'

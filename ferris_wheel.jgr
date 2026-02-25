@@ -1,0 +1,47 @@
+newgraph 
+xaxis min 0 max 10 size 6 nodraw
+yaxis min 0 max 10 size 6 nodraw
+clip
+
+newline linethickness 35 color 0.5 0.5 0.5
+    pts 2 0.5  5 5  8 0.5
+
+newline poly linethickness 1 color 0.3 0.3 0.3 
+    pts 1 0  9 0  9 1  1 1
+
+shell : awk '\
+    BEGIN {\
+        pi = atan2(0, -1);\
+        radius = 3;\
+        printf("newline poly linethickness 20 color 0.3 0.3 0.3 pfill -1 pts\n");\
+        for (angle = 0; angle < 2*pi; angle += pi/50) {\
+            printf("%f %f\n", radius*cos(angle) + 5, radius*sin(angle) + 5);\
+        }\
+    }'
+
+shell : awk '\
+    function printBar(angle) {\
+        printf("newline linethickness 20 color 0.3 0.3 0.3 pts\n");\
+        printf("%f %f\n", radius*cos(angle) + 5, radius*sin(angle) + 5);\
+        printf("%f %f\n", radius*cos(angle+pi) + 5, radius*sin(angle+pi) + 5);\
+        printf("newline poly linethickness 80 color 0 0 0 pts %f %f\n", radius*cos(angle) + 5, radius*sin(angle) + 5);\
+        printf("newline poly linethickness 80 color 0 0 0 pts %f %f\n", radius*cos(angle+pi) + 5, radius*sin(angle+pi) + 5);\
+    }\
+\
+    BEGIN {\
+        pi = atan2(0, -1);\
+        radius = 3;\
+		offset = 10*2*pi/60;\
+        angle1 = pi/6 + offset;\
+        angle2 = angle1 + 2*pi/6;\
+        angle3 = angle2 + 2*pi/6;\
+\
+        printBar(angle1);\
+        printBar(angle2);\
+        printBar(angle3);\
+    }'
+
+
+
+newline poly linethickness 55 color 0 0 0 
+    pts 5 5
