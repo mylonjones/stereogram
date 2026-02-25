@@ -31,7 +31,7 @@ shell : awk '\
     BEGIN {\
         pi = atan2(0, -1);\
         radius = 3;\
-		offset = 10*2*pi/60;\
+		offset = 9*2*pi/60;\
         angle1 = pi/6 + offset;\
         angle2 = angle1 + 2*pi/6;\
         angle3 = angle2 + 2*pi/6;\

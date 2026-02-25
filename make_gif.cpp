@@ -18,7 +18,7 @@ int main() {
     int delay = 10; // hundredths of a second (10 = 0.1s)
     
     
-    for (int i = 1; i <= 10; i++) {
+    for (int i = 0; i < 10; i++) {
         stringstream filename;
         filename << "./frames/frame" << i << ".jpg";
         unsigned char* img = stbi_load(filename.str().c_str(), &width, &height, &channels, 4);
