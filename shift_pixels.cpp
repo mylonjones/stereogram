@@ -103,25 +103,27 @@ unsigned char* partition_shape(unsigned char *shape, int width, int height, int 
 int main(int argc, char **argv) {
     int width1, height1, channels1;
     int width2, height2, channels2;
+
+    if (argc != 2) exit(1);
     
     unsigned char* pattern = stbi_load("pattern.jpg", &width1, &height1, &channels1, 3);
     unsigned char* shape = stbi_load("shape.jpg", &width2, &height2, &channels2, 3);
     
-    if (!pattern || !shape) {
-        printf("Failed to load image\n");
-        return 1;
-    }
+    // if (!pattern || !shape) {
+    //     printf("Failed to load image\n");
+    //     return 1;
+    // }
     
-    if (width1 != width2) {
-        cout << "width does not match" << endl;
-    }
-    if (height1 != height2) {
-        cout << "height does not match" << endl;
-    }
+    // if (width1 != width2) {
+    //     cout << "width does not match" << endl;
+    // }
+    // if (height1 != height2) {
+    //     cout << "height does not match" << endl;
+    // }
 
     
-    cout << "pattern height and width: " << height1 << " " << width1 << endl;
-    cout << "shape height and width: " << height2 << " " << width2 << endl;
+    // cout << "pattern height and width: " << height1 << " " << width1 << endl;
+    // cout << "shape height and width: " << height2 << " " << width2 << endl;
     
     unsigned char *result;
 
@@ -149,6 +151,7 @@ int main(int argc, char **argv) {
     stringstream file_name;
     file_name << "./frames/frame" << argv[1] << ".jpg";
     stbi_write_jpg(file_name.str().c_str(), trimmedPatternWidth * 3, trimmedPatternHeight, 3, result, 100);
+    cout << "created frame" << argv[1] << ".jpg" << endl;
 
     return 0;
 }
